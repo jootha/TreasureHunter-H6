@@ -17,6 +17,8 @@ public class Coffre implements Element {
 	public String toString(){
 		return this.symbole;
 	}
+	
+	
 
 	public String getSymbole() {
 		return symbole;
