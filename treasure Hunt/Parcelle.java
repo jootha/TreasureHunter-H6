@@ -8,6 +8,7 @@ public class Parcelle {
 		this.idx1=idx1;
 		this.idx2=idx2;
 		liste = new ArrayList<Element>();
+		add(new Vide());
 	}
 	
 	public void add(Element element) {
