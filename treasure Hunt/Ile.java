@@ -11,7 +11,7 @@ public class Ile {
 		for (int i=0; i<taille; i++){
 			for(int j=0; j<taille; j++){
 				tab[i][j]=new Parcelle(i,j);
-				tab[i][j].add(new Vide());
+				//tab[i][j].add(new Vide()); deplacer dans le constructeur de parcelle
 				if(r.nextInt(10)==1){
 					tab[i][j].remove(0);
 					tab[i][j].add(new Rocher());
