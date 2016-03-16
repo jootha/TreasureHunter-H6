@@ -1,6 +1,6 @@
 import java.util.*;
 public class Parcelle {
-	List<Element> liste;
+	ArrayList<Element> liste;
 	private int idx1;
 	private int idx2;
 	
