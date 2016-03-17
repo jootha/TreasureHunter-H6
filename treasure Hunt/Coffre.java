@@ -1,10 +1,12 @@
 
-public class Navire implements Element {
+public class Coffre implements Element {
+	
 	private String symbole;
-	private final int PRIORITE=4;
-	Navire (int equipe){
-		if(equipe==1) this.symbole=" n ";
-		else this.symbole=" N ";
+	private final int PRIORITE=2;
+
+	Coffre (){
+	
+		this.symbole=" C ";
 	}
 	
 	public boolean praticable(){
@@ -20,9 +22,9 @@ public class Navire implements Element {
 		return symbole;
 	}
 
-
 	public int getPRIORITE (){
 		return this.PRIORITE;
 	}
+
 
 }

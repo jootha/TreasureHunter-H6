@@ -1,6 +1,6 @@
 import java.util.*;
 public class Parcelle {
-	ArrayList<Element> liste;
+	List<Element> liste;
 	private int idx1;
 	private int idx2;
 	
@@ -8,7 +8,10 @@ public class Parcelle {
 		this.idx1=idx1;
 		this.idx2=idx2;
 		liste = new ArrayList<Element>();
-		add(new Vide());
+		
+	}
+	public boolean isEmpty(){
+		return liste.isEmpty();
 	}
 	
 	public void add(Element element) {
@@ -24,11 +27,21 @@ public class Parcelle {
 		liste.remove(element);
 	}
 	
-	@Override
 	public String toString() {
-		return liste.toString() ;
+		int max=0;
+		for (Element f: liste){
+			if(f.getPRIORITE()>max){
+				max=f.getPRIORITE();
+			}
+		}
+		
+		for (Element f: liste){
+			if(f.getPRIORITE()==max){
+				return f.getSymbole();
+			}
+		}
+		return "~";
 	}
-
 
 	public int getIdx1() {
 		return idx1;
@@ -51,6 +64,5 @@ public class Parcelle {
 		this.idx2=idx2;
 	}
 
-	
-	
 }
+

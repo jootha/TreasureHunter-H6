@@ -3,7 +3,7 @@ public class Rocher implements Element {
 	private String symbole;
 	private final int PRIORITE=3;
 	Rocher (){
-		this.symbole="R";
+		this.symbole=" R ";
 	}
 	
 	public boolean praticable(){
