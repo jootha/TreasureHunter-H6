@@ -1,24 +1,7 @@
 
-public class Rocher implements Element {
-	private String symbole;
-	private final int PRIORITE=3;
-	Rocher (){
-		this.symbole=" R ";
-	}
+public class Rocher extends Element {
 	
-	public boolean praticable(){
-		return false;
+	Rocher (){
+		super(" R ",3,false);
 	}
-
-	public String toString(){
-		return this.symbole;
-	}
-
-	public String getSymbole() {
-		return symbole;
-	}
-	public int getPRIORITE (){
-		return this.PRIORITE;
-	}
-
 }

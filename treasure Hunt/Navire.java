@@ -1,28 +1,13 @@
 
-public class Navire implements Element {
-	private String symbole;
-	private final int PRIORITE=4;
+public class Navire extends Element {
+	
 	Navire (int equipe){
-		if(equipe==1) this.symbole=" n ";
-		else this.symbole=" N ";
+		super(" n ",4,true);
+		if(equipe==1) setSymbole(" N ");
 	}
 	
 	public boolean praticable(){
 		return true;
-	}
-
-	
-	public String toString(){
-		return this.symbole;
-	}
-
-	public String getSymbole() {
-		return symbole;
-	}
-
-
-	public int getPRIORITE (){
-		return this.PRIORITE;
 	}
 
 }

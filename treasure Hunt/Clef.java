@@ -1,29 +1,8 @@
 
-public class Clef implements Element {
+public class Clef extends Element {
 	
-	private String symbole;
-	private final int PRIORITE=2;
-
 	Clef (){
-		this.symbole=" K ";
-	}
-	
-	public boolean praticable(){
-		return true;
-	}
-
-	
-	public String toString(){
-		return this.symbole;
-	}
-
-	public String getSymbole() {
-		return symbole;
-	}
-
-	public int getPRIORITE (){
-		return this.PRIORITE;
+		super(" k ",2,true);
 	}
 
 }
-

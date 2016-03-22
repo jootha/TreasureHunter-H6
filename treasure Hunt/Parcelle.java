@@ -30,13 +30,13 @@ public class Parcelle {
 	public String toString() {
 		int max=0;
 		for (Element f: liste){
-			if(f.getPRIORITE()>max){
-				max=f.getPRIORITE();
+			if(f.getPriorite()>max){
+				max=f.getPriorite();
 			}
 		}
 		
 		for (Element f: liste){
-			if(f.getPRIORITE()==max){
+			if(f.getPriorite()==max){
 				return f.getSymbole();
 			}
 		}

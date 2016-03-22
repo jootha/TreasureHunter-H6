@@ -1,30 +1,7 @@
 
-public class Coffre implements Element {
+public class Coffre extends Element {
 	
-	private String symbole;
-	private final int PRIORITE=2;
-
 	Coffre (){
-	
-		this.symbole=" C ";
+		super(" C ",2,false);
 	}
-	
-	public boolean praticable(){
-		return true;
-	}
-
-	
-	public String toString(){
-		return this.symbole;
-	}
-
-	public String getSymbole() {
-		return symbole;
-	}
-
-	public int getPRIORITE (){
-		return this.PRIORITE;
-	}
-
-
 }

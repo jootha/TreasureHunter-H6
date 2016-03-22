@@ -2,22 +2,24 @@ import java.util.*;
 public class Ile {
 	private Parcelle [][]tab;
 	private int taille;
-	private int proportion;
+	private double proportion;
 	
 	
-	Ile (int taille,int proportion){
+	Ile (int taille,double proportion){
 		this.tab = new Parcelle[taille][taille];
 		this.taille=taille;
 		this.proportion=proportion;
 		Random r= new Random();
-		ileVierge();
-		addClef();
-		addCoffre();
+		genereIleVierge();
+		genereClef();
+		genereCoffre();
+		genereEau();
 		tab[0][0].add(new Navire(1));
 		tab[taille-1][taille-1].add(new Navire(2));
-		addRochers();
+		genereRochers();
 	}
-	private void ileVierge(){
+	
+	private void genereIleVierge(){
 		Random r= new Random();
 		for (int i=0; i<taille; i++){
 			for(int j=0; j<taille; j++){
@@ -26,12 +28,12 @@ public class Ile {
 		}	
 	}
 	
-	private void addClef(){
+	private void genereClef(){
 		boolean finit=false;
 		Random r= new Random();
 		while(!finit){
-			int a = r.nextInt(taille);
-			int b = r.nextInt(taille);
+			int a = r.nextInt(taille-2)+1;
+			int b = r.nextInt(taille-2)+1;
 			if(tab[a][b].isEmpty()){
 				tab[a][b].add(new Clef());
 				tab[a][b].add(new Rocher());
@@ -40,12 +42,12 @@ public class Ile {
 		}
 	}
 	
-	private void addCoffre(){
+	private void genereCoffre(){
 		boolean finit=false;
 		Random r= new Random();
 		while(!finit){
-			int a = r.nextInt(taille);
-			int b = r.nextInt(taille);
+			int a = r.nextInt(taille-2)+1;
+			int b = r.nextInt(taille-2)+1;
 			if(tab[a][b].isEmpty()){
 				tab[a][b].add(new Coffre());
 				tab[a][b].add(new Tresor());
@@ -55,12 +57,22 @@ public class Ile {
 		}
 	}
 	
-	private void addRochers(){
+	private void genereEau(){
+		for(int i=0;i<taille;i++){
+			tab[i][0].add(new Eau());			
+			tab[0][i].add(new Eau());			
+			tab[i][taille-1].add(new Eau());			
+			tab[taille-1][i].add(new Eau());			
+		}		
+	}
+	
+	
+	private void genereRochers(){
 		int nbR=0;
 		Random r= new Random();
-		while(nbR<(taille*taille)*(proportion-2)/100){	
-			int a = r.nextInt(taille);
-			int b = r.nextInt(taille);
+		while(nbR<(taille*taille)*((proportion*100)-2)/100){	
+			int a = r.nextInt(taille-2)+1;
+			int b = r.nextInt(taille-2)+1;
 			if(tab[a][b].isEmpty()){
 				tab[a][b].add(new Rocher());
 				nbR++;	
@@ -111,11 +123,19 @@ public class Ile {
 	public void add(Element element, int idx1, int idx2) {
 		tab[idx1][idx2].add(element);
 	}
+	
 
 	public static void main(String[] args) {
-		Ile ile = new Ile(10,10);
+		Ile ile = new Ile(10,0.10);
 		
 		System.out.println(ile);
+		int nbR=0;
+		for (int i=0; i<ile.taille; i++){
+			for (int j=0; j<ile.taille; j++){
+				if(ile.tab[i][j].contient(new Rocher()))nbR+=1;
+			}
+		}
+		System.out.println(nbR);
 	}
 	
 	
