@@ -116,7 +116,6 @@ public class Ile {
 		Ile ile = new Ile(10,10);
 		
 		System.out.println(ile);
-		System.out.println(ile.clefAccessible());
 	}
 	
 	
