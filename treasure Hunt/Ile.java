@@ -1,8 +1,8 @@
 import java.util.*;
 public class Ile {
-	Parcelle [][]tab;
-	int taille;
-	int proportion;
+	private Parcelle [][]tab;
+	private int taille;
+	private int proportion;
 	
 	
 	Ile (int taille,int proportion){
@@ -68,6 +68,24 @@ public class Ile {
 		}
 	}
 	
+	public boolean clefAccessible(){
+		return clefAccessible(1,1);
+	}
+	
+	boolean clefAccessible(int idx1,int idx2){
+		for (int i=-1;i<=1;i++){
+			for (int j=-1;j<=1;j++){
+				if (idx1+i!=0 && idx1+i!=taille-2 && idx2+j!=0 && idx2+j!=taille-2){
+					if(tab[idx1+i][idx2+j].contient(new Clef())){
+						return true;
+					}
+					else return clefAccessible(idx1+1,idx2+j);
+				}
+			}
+		}
+		return (Boolean) null;
+	}
+	
 	public String toString() {
 		String res="";
 		for (int i=0; i<taille; i++){
@@ -98,7 +116,8 @@ public class Ile {
 		Ile ile = new Ile(10,10);
 		
 		System.out.println(ile);
-		}
+		System.out.println(ile.clefAccessible());
+	}
 	
 	
 }

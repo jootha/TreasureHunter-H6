@@ -40,9 +40,18 @@ public class Parcelle {
 				return f.getSymbole();
 			}
 		}
-		return "~";
+		return " ~ ";
 	}
-
+	
+	public boolean contient(Element e){
+		for (Element f: liste){
+			if(e.getSymbole().equals(f.getSymbole())){
+				return true;
+			}
+		}
+		return false;		
+	}
+	
 	public int getIdx1() {
 		return idx1;
 	}
@@ -63,6 +72,7 @@ public class Parcelle {
 		this.idx1=idx1;
 		this.idx2=idx2;
 	}
+	
 
 }
 
