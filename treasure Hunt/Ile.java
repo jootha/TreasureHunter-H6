@@ -1,6 +1,7 @@
 import java.util.*;
+
 public class Ile {
-	private Parcelle [][]tab;
+	Parcelle [][]tab;
 	private int taille;
 	private double proportion;
 	
@@ -9,18 +10,18 @@ public class Ile {
 		this.tab = new Parcelle[taille][taille];
 		this.taille=taille;
 		this.proportion=proportion;
-		Random r= new Random();
 		genereIleVierge();
 		genereClef();
 		genereCoffre();
 		genereEau();
-		tab[0][0].add(new Navire(1));
-		tab[taille-1][taille-1].add(new Navire(2));
+		tab[0][1].add(new Navire(1));
+		tab[taille-1][taille-2].add(new Navire(2));
 		genereRochers();
+		tab[1][1].add(new Explorateur());
+		deplacer(1,1,5,5);
 	}
 	
 	private void genereIleVierge(){
-		Random r= new Random();
 		for (int i=0; i<taille; i++){
 			for(int j=0; j<taille; j++){
 				tab[i][j]=new Parcelle(i,j);
@@ -79,23 +80,27 @@ public class Ile {
 			}
 		}
 	}
+
 	
-	public boolean clefAccessible(){
-		return clefAccessible(1,1);
+	
+	public void add(Element element, int idx1, int idx2) {
+		tab[idx1][idx2].add(element);
 	}
 	
-	boolean clefAccessible(int idx1,int idx2){
-		for (int i=-1;i<=1;i++){
-			for (int j=-1;j<=1;j++){
-				if (idx1+i!=0 && idx1+i!=taille-2 && idx2+j!=0 && idx2+j!=taille-2){
-					if(tab[idx1+i][idx2+j].contient(new Clef())){
-						return true;
-					}
-					else return clefAccessible(idx1+1,idx2+j);
-				}
-			}
+	
+	public void deplacer(int x,int y,int idx1, int idx2){// move Element in x,y to idx1,idx2
+		//if(tab[x][y].getPersonnage() instanceof Explorateur &&tab[idx1][idx2].contains(new Rocher())){ explore tab[x][y];
+			
+		
+		if(depValide(x,y,idx1,idx2)){
+		tab[idx1][idx2].add(tab[x][y].getPersonnage());
+		tab[x][y].removePerso();
 		}
-		return (Boolean) null;
+	}
+	
+	public boolean depValide(int x,int y,int idx1, int idx2){
+		//if(tab[x][y].getPersonnage()!=null)return false;
+		return tab[idx1][idx2].praticable();
 	}
 	
 	public String toString() {
@@ -120,23 +125,17 @@ public class Ile {
 		return res;
 	}
 	
-	public void add(Element element, int idx1, int idx2) {
-		tab[idx1][idx2].add(element);
-	}
-	
-
 	public static void main(String[] args) {
 		Ile ile = new Ile(10,0.10);
 		
 		System.out.println(ile);
-		int nbR=0;
+		
+		/*int nbR=0;
 		for (int i=0; i<ile.taille; i++){
 			for (int j=0; j<ile.taille; j++){
-				if(ile.tab[i][j].contient(new Rocher()))nbR+=1;
+				if(ile.tab[i][j].contains(new Rocher()))nbR+=1;
 			}
 		}
-		System.out.println(nbR);
+		System.out.println(nbR);*/
 	}
-	
-	
 }

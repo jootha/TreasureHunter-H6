@@ -2,7 +2,7 @@
 public class Element {
 	private String symbole;
 	private int priorite;
-	boolean praticable;
+	private boolean praticable;
 
 	Element(){}
 
